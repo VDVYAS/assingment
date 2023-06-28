@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>userInfo</title>
+    <style>
+        .success {
+            color: rgb(1, 47, 1);
+            font-weight: bold;
+            background-color: rgb(135, 227, 135);
+            padding: 5px;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            width: 500px;
+            padding: 16px;
+            background-color: #f2f2f2;
+            margin: 0 auto;
+            margin-top: 100px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        input[type=text],
+        input[type=date],
+        input[type=number] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+    {% if messages %} {% for message in messages %}
+    <div{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</div>
+        {% endfor %} {% endif %}
+        <h1>user info</h1>
+        <a href="handlelogout"><button style="width: 100px; height: 50px;">Logout</button></a>
+        <div class="container">
+
+            <form method="post">
+                {% csrf_token %}
+                <label for="order-date">Order date:</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="company-name">Company Name:</label>
+                <input type="text" id="company-name" name="company-name" required>
+
+                <label for="owner">Owner:</label>
+                <input type="text" id="owner" name="owner" required>
+
+                <label for="Item">Item:</label>
+                <input type="text" id="Item" name="Item" required>
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" required>
+                <label for="weight">Weight:</label>
+                <input type="number" id="weight" name="weight" required>
+                <label for="req-of-shipment">Request Of Shipment:</label>
+                <input type="text" id="req-of-shipment" name="req-of-shipment" required>
+                <label for="tracking-id">Tracking Id:</label>
+                <input type="text" id="tracking-id" name="tracking-id" required>
+
+                <label for="shipment-size">Shipment size:</label>
+                <input type="text" id="shipment-size" name="shipment-size" required>
+                <label for="box-count">Box count:</label>
+                <input type="number" id="box-count" name="box-count" required>
+                <label for="specifiaction">Specifiaction:</label>
+                <input type="text" id="specifiaction" name="specifiaction" required>
+                <label for="checklist-quantity">Checklist Quantity:</label>
+                <input type="text" id="checklist-quantity" name="checklist-quantity" required>
+
+                <button type="submit ">Submit</button>
+            </form>
+        </div>
+        <script>
+            // Set minimum value to the current date
+            var currentDate = new Date().toISOString().split("T")[0];
+            document.getElementById("date").setAttribute("max", currentDate);
+        </script>
+</body>
+
+</html>
